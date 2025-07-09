@@ -1,0 +1,122 @@
+syntax = "proto3";
+
+package helloworld.v1;
+
+import "google/api/annotations.proto";
+
+option go_package = "account-service/api/helloworld/v1;v1";
+option java_multiple_files = true;
+option java_package = "dev.kratos.api.helloworld.v1";
+option java_outer_classname = "HelloworldProtoV1";
+
+service Account {
+  rpc CreateAccount (createRequest) returns (createResponse){
+    option (google.api.http) ={
+      post:"v1/create",
+      body:"*"
+    };
+  };
+
+  rpc UpdateAccount (updateRequest) returns (updateResponse){
+    option (google.api.http) ={
+      put:"v1/update"
+      body: "*"
+    };
+  };
+
+  rpc DeleteAccount (deleteRequest) returns (deleteResponse){
+    option (google.api.http)={
+      delete:"v1/delete/{accountNumber}",
+      body:"*"
+    };
+  };
+
+  rpc FindAccount (findRequest) returns (findResponse){
+    option (google.api.http)={
+      get:"v1/find/{accountNumber}"
+    };
+  };
+ 
+}
+
+message createRequest{
+  int64 accountId=1;
+  int64 accountNumber=2;
+  string accountType=3;
+  string currency=4;
+  string status=5;
+  string availableBalance=6;
+  string pendingBalance=7;
+  string creditLimit=8;
+}
+message createResponse{
+  int64 accountId=1;
+  int64 accountNumber=2;
+  string accountType=3;
+  string currency=4;
+  string status=5;
+  string availableBalance=6;
+  string pendingBalance=7;
+  string creditLimit=8;
+}
+
+message updateRequest{
+  int64 accountId=1;
+  int64 accountNumber=2;
+  string accountType=3;
+  string currency=4;
+  string status=5;
+  string availableBalance=6;
+  string pendingBalance=7;
+  string creditLimit=8;
+}
+
+message updateResponse{
+  int64 accountId=1;
+  int64 accountNumber=2;
+  string accountType=3;
+  string currency=4;
+  string status=5;
+  string availableBalance=6;
+  string pendingBalance=7;
+  string creditLimit=8;
+}
+
+message deleteRequest{
+  int64 accountId=1;
+  int64 accountNumber=2;
+  string accountType=3;
+}
+message deleteResponse{
+  int64 accountId=1;
+  int64 accountNumber=2;
+  string accountType=3;
+  string currency=4;
+  string status=5;
+  string availableBalance=6;
+  string pendingBalance=7;
+  string creditLimit=8;
+}
+
+message findRequest{
+  int64 accountId=1;
+  int64 accountNumber=2;
+  string accountType=3;
+  string currency=4;
+  string status=5;
+  string availableBalance=6;
+  string pendingBalance=7;
+  string creditLimit=8;
+}
+
+message findResponse{
+  int64 accountId=1;
+  int64 accountNumber=2;
+  string accountType=3;
+  string currency=4;
+  string status=5;
+  string availableBalance=6;
+  string pendingBalance=7;
+  string creditLimit=8;
+  
+}
