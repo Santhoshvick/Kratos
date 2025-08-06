@@ -36,7 +36,7 @@ func RegisterAccountHTTPServer(s *http.Server, srv AccountHTTPServer) {
 	r.POST("v1/create", _Account_CreateAccount0_HTTP_Handler(srv))
 	r.PUT("v1/update", _Account_UpdateAccount0_HTTP_Handler(srv))
 	r.DELETE("v1/delete/{accountNumber}", _Account_DeleteAccount0_HTTP_Handler(srv))
-	r.GET("v1/find/{accountNumber}", _Account_FindAccount0_HTTP_Handler(srv))
+	r.GET("v1/find/{accountId}", _Account_FindAccount0_HTTP_Handler(srv))
 }
 
 func _Account_CreateAccount0_HTTP_Handler(srv AccountHTTPServer) func(ctx http.Context) error {
@@ -173,7 +173,7 @@ func (c *AccountHTTPClientImpl) DeleteAccount(ctx context.Context, in *DeleteReq
 
 func (c *AccountHTTPClientImpl) FindAccount(ctx context.Context, in *FindRequest, opts ...http.CallOption) (*FindResponse, error) {
 	var out FindResponse
-	pattern := "v1/find/{accountNumber}"
+	pattern := "v1/find/{accountId}"
 	path := binding.EncodeURL(pattern, in, true)
 	opts = append(opts, http.Operation(OperationAccountFindAccount))
 	opts = append(opts, http.PathTemplate(pattern))

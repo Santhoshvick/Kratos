@@ -18,7 +18,7 @@ var (
 // Greeter is a Greeter model.
 type Account struct {
 	AccountId         int64
-	CustomerID        string
+	CustomerId        string
 	AccountNumber     int64    `gorm:"unique"`
 	AccountType      string
 	Currency          string

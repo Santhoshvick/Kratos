@@ -8,6 +8,7 @@ import (
 	"github.com/go-kratos/kratos/v2/log"
 	"github.com/go-kratos/kratos/v2/middleware/recovery"
 	"github.com/go-kratos/kratos/v2/transport/http"
+	h "github.com/gorilla/handlers"
 )
 
 // NewHTTPServer new an HTTP server.
@@ -20,6 +21,13 @@ func NewHTTPServer(c *conf.Server, greeter *service.AccountService, logger log.L
 	if c.Http.Network != "" {
 		opts = append(opts, http.Network(c.Http.Network))
 	}
+	cors := http.Filter(h.CORS(
+        h.AllowedOrigins([]string{"*"}),
+        h.AllowedMethods([]string{"GET", "POST", "PATCH", "DELETE"}),
+        h.AllowedHeaders([]string{"Content-Type", "Content-Disposition"}),
+        h.ExposedHeaders([]string{"Content-Disposition", "Content-Type"}),
+    ))
+    opts = append(opts, cors)
 	if c.Http.Addr != "" {
 		opts = append(opts, http.Address(c.Http.Addr))
 	}

@@ -32,6 +32,7 @@ type CreateRequest struct {
 	AvailableBalance string                 `protobuf:"bytes,6,opt,name=availableBalance,proto3" json:"availableBalance,omitempty"`
 	PendingBalance   string                 `protobuf:"bytes,7,opt,name=pendingBalance,proto3" json:"pendingBalance,omitempty"`
 	CreditLimit      string                 `protobuf:"bytes,8,opt,name=creditLimit,proto3" json:"creditLimit,omitempty"`
+	CustomerId       string                 `protobuf:"bytes,9,opt,name=customerId,proto3" json:"customerId,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -122,6 +123,13 @@ func (x *CreateRequest) GetCreditLimit() string {
 	return ""
 }
 
+func (x *CreateRequest) GetCustomerId() string {
+	if x != nil {
+		return x.CustomerId
+	}
+	return ""
+}
+
 type CreateResponse struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
 	AccountId        int64                  `protobuf:"varint,1,opt,name=accountId,proto3" json:"accountId,omitempty"`
@@ -132,6 +140,7 @@ type CreateResponse struct {
 	AvailableBalance string                 `protobuf:"bytes,6,opt,name=availableBalance,proto3" json:"availableBalance,omitempty"`
 	PendingBalance   string                 `protobuf:"bytes,7,opt,name=pendingBalance,proto3" json:"pendingBalance,omitempty"`
 	CreditLimit      string                 `protobuf:"bytes,8,opt,name=creditLimit,proto3" json:"creditLimit,omitempty"`
+	CustomerId       string                 `protobuf:"bytes,9,opt,name=customerId,proto3" json:"customerId,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -222,6 +231,13 @@ func (x *CreateResponse) GetCreditLimit() string {
 	return ""
 }
 
+func (x *CreateResponse) GetCustomerId() string {
+	if x != nil {
+		return x.CustomerId
+	}
+	return ""
+}
+
 type UpdateRequest struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
 	AccountId        int64                  `protobuf:"varint,1,opt,name=accountId,proto3" json:"accountId,omitempty"`
@@ -232,6 +248,7 @@ type UpdateRequest struct {
 	AvailableBalance string                 `protobuf:"bytes,6,opt,name=availableBalance,proto3" json:"availableBalance,omitempty"`
 	PendingBalance   string                 `protobuf:"bytes,7,opt,name=pendingBalance,proto3" json:"pendingBalance,omitempty"`
 	CreditLimit      string                 `protobuf:"bytes,8,opt,name=creditLimit,proto3" json:"creditLimit,omitempty"`
+	CustomerId       string                 `protobuf:"bytes,9,opt,name=customerId,proto3" json:"customerId,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -322,6 +339,13 @@ func (x *UpdateRequest) GetCreditLimit() string {
 	return ""
 }
 
+func (x *UpdateRequest) GetCustomerId() string {
+	if x != nil {
+		return x.CustomerId
+	}
+	return ""
+}
+
 type UpdateResponse struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
 	AccountId        int64                  `protobuf:"varint,1,opt,name=accountId,proto3" json:"accountId,omitempty"`
@@ -332,6 +356,7 @@ type UpdateResponse struct {
 	AvailableBalance string                 `protobuf:"bytes,6,opt,name=availableBalance,proto3" json:"availableBalance,omitempty"`
 	PendingBalance   string                 `protobuf:"bytes,7,opt,name=pendingBalance,proto3" json:"pendingBalance,omitempty"`
 	CreditLimit      string                 `protobuf:"bytes,8,opt,name=creditLimit,proto3" json:"creditLimit,omitempty"`
+	CustomerId       string                 `protobuf:"bytes,9,opt,name=customerId,proto3" json:"customerId,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -422,11 +447,19 @@ func (x *UpdateResponse) GetCreditLimit() string {
 	return ""
 }
 
+func (x *UpdateResponse) GetCustomerId() string {
+	if x != nil {
+		return x.CustomerId
+	}
+	return ""
+}
+
 type DeleteRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	AccountId     int64                  `protobuf:"varint,1,opt,name=accountId,proto3" json:"accountId,omitempty"`
 	AccountNumber int64                  `protobuf:"varint,2,opt,name=accountNumber,proto3" json:"accountNumber,omitempty"`
 	AccountType   string                 `protobuf:"bytes,3,opt,name=accountType,proto3" json:"accountType,omitempty"`
+	CustomerId    string                 `protobuf:"bytes,9,opt,name=customerId,proto3" json:"customerId,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -482,6 +515,13 @@ func (x *DeleteRequest) GetAccountType() string {
 	return ""
 }
 
+func (x *DeleteRequest) GetCustomerId() string {
+	if x != nil {
+		return x.CustomerId
+	}
+	return ""
+}
+
 type DeleteResponse struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
 	AccountId        int64                  `protobuf:"varint,1,opt,name=accountId,proto3" json:"accountId,omitempty"`
@@ -492,6 +532,7 @@ type DeleteResponse struct {
 	AvailableBalance string                 `protobuf:"bytes,6,opt,name=availableBalance,proto3" json:"availableBalance,omitempty"`
 	PendingBalance   string                 `protobuf:"bytes,7,opt,name=pendingBalance,proto3" json:"pendingBalance,omitempty"`
 	CreditLimit      string                 `protobuf:"bytes,8,opt,name=creditLimit,proto3" json:"creditLimit,omitempty"`
+	CustomerId       string                 `protobuf:"bytes,9,opt,name=customerId,proto3" json:"customerId,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -582,6 +623,13 @@ func (x *DeleteResponse) GetCreditLimit() string {
 	return ""
 }
 
+func (x *DeleteResponse) GetCustomerId() string {
+	if x != nil {
+		return x.CustomerId
+	}
+	return ""
+}
+
 type FindRequest struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
 	AccountId        int64                  `protobuf:"varint,1,opt,name=accountId,proto3" json:"accountId,omitempty"`
@@ -592,6 +640,7 @@ type FindRequest struct {
 	AvailableBalance string                 `protobuf:"bytes,6,opt,name=availableBalance,proto3" json:"availableBalance,omitempty"`
 	PendingBalance   string                 `protobuf:"bytes,7,opt,name=pendingBalance,proto3" json:"pendingBalance,omitempty"`
 	CreditLimit      string                 `protobuf:"bytes,8,opt,name=creditLimit,proto3" json:"creditLimit,omitempty"`
+	CustomerId       string                 `protobuf:"bytes,9,opt,name=customerId,proto3" json:"customerId,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -682,6 +731,13 @@ func (x *FindRequest) GetCreditLimit() string {
 	return ""
 }
 
+func (x *FindRequest) GetCustomerId() string {
+	if x != nil {
+		return x.CustomerId
+	}
+	return ""
+}
+
 type FindResponse struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
 	AccountId        int64                  `protobuf:"varint,1,opt,name=accountId,proto3" json:"accountId,omitempty"`
@@ -692,6 +748,7 @@ type FindResponse struct {
 	AvailableBalance string                 `protobuf:"bytes,6,opt,name=availableBalance,proto3" json:"availableBalance,omitempty"`
 	PendingBalance   string                 `protobuf:"bytes,7,opt,name=pendingBalance,proto3" json:"pendingBalance,omitempty"`
 	CreditLimit      string                 `protobuf:"bytes,8,opt,name=creditLimit,proto3" json:"creditLimit,omitempty"`
+	CustomerId       string                 `protobuf:"bytes,9,opt,name=customerId,proto3" json:"customerId,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -782,11 +839,18 @@ func (x *FindResponse) GetCreditLimit() string {
 	return ""
 }
 
+func (x *FindResponse) GetCustomerId() string {
+	if x != nil {
+		return x.CustomerId
+	}
+	return ""
+}
+
 var File_api_helloworld_v1_account_proto protoreflect.FileDescriptor
 
 const file_api_helloworld_v1_account_proto_rawDesc = "" +
 	"\n" +
-	"\x1fapi/helloworld/v1/account.proto\x12\rhelloworld.v1\x1a\x1cgoogle/api/annotations.proto\"\x9f\x02\n" +
+	"\x1fapi/helloworld/v1/account.proto\x12\rhelloworld.v1\x1a\x1cgoogle/api/annotations.proto\"\xbf\x02\n" +
 	"\rcreateRequest\x12\x1c\n" +
 	"\taccountId\x18\x01 \x01(\x03R\taccountId\x12$\n" +
 	"\raccountNumber\x18\x02 \x01(\x03R\raccountNumber\x12 \n" +
@@ -795,7 +859,10 @@ const file_api_helloworld_v1_account_proto_rawDesc = "" +
 	"\x06status\x18\x05 \x01(\tR\x06status\x12*\n" +
 	"\x10availableBalance\x18\x06 \x01(\tR\x10availableBalance\x12&\n" +
 	"\x0ependingBalance\x18\a \x01(\tR\x0ependingBalance\x12 \n" +
-	"\vcreditLimit\x18\b \x01(\tR\vcreditLimit\"\xa0\x02\n" +
+	"\vcreditLimit\x18\b \x01(\tR\vcreditLimit\x12\x1e\n" +
+	"\n" +
+	"customerId\x18\t \x01(\tR\n" +
+	"customerId\"\xc0\x02\n" +
 	"\x0ecreateResponse\x12\x1c\n" +
 	"\taccountId\x18\x01 \x01(\x03R\taccountId\x12$\n" +
 	"\raccountNumber\x18\x02 \x01(\x03R\raccountNumber\x12 \n" +
@@ -804,7 +871,10 @@ const file_api_helloworld_v1_account_proto_rawDesc = "" +
 	"\x06status\x18\x05 \x01(\tR\x06status\x12*\n" +
 	"\x10availableBalance\x18\x06 \x01(\tR\x10availableBalance\x12&\n" +
 	"\x0ependingBalance\x18\a \x01(\tR\x0ependingBalance\x12 \n" +
-	"\vcreditLimit\x18\b \x01(\tR\vcreditLimit\"\x9f\x02\n" +
+	"\vcreditLimit\x18\b \x01(\tR\vcreditLimit\x12\x1e\n" +
+	"\n" +
+	"customerId\x18\t \x01(\tR\n" +
+	"customerId\"\xbf\x02\n" +
 	"\rupdateRequest\x12\x1c\n" +
 	"\taccountId\x18\x01 \x01(\x03R\taccountId\x12$\n" +
 	"\raccountNumber\x18\x02 \x01(\x03R\raccountNumber\x12 \n" +
@@ -813,7 +883,10 @@ const file_api_helloworld_v1_account_proto_rawDesc = "" +
 	"\x06status\x18\x05 \x01(\tR\x06status\x12*\n" +
 	"\x10availableBalance\x18\x06 \x01(\tR\x10availableBalance\x12&\n" +
 	"\x0ependingBalance\x18\a \x01(\tR\x0ependingBalance\x12 \n" +
-	"\vcreditLimit\x18\b \x01(\tR\vcreditLimit\"\xa0\x02\n" +
+	"\vcreditLimit\x18\b \x01(\tR\vcreditLimit\x12\x1e\n" +
+	"\n" +
+	"customerId\x18\t \x01(\tR\n" +
+	"customerId\"\xc0\x02\n" +
 	"\x0eupdateResponse\x12\x1c\n" +
 	"\taccountId\x18\x01 \x01(\x03R\taccountId\x12$\n" +
 	"\raccountNumber\x18\x02 \x01(\x03R\raccountNumber\x12 \n" +
@@ -822,11 +895,17 @@ const file_api_helloworld_v1_account_proto_rawDesc = "" +
 	"\x06status\x18\x05 \x01(\tR\x06status\x12*\n" +
 	"\x10availableBalance\x18\x06 \x01(\tR\x10availableBalance\x12&\n" +
 	"\x0ependingBalance\x18\a \x01(\tR\x0ependingBalance\x12 \n" +
-	"\vcreditLimit\x18\b \x01(\tR\vcreditLimit\"u\n" +
+	"\vcreditLimit\x18\b \x01(\tR\vcreditLimit\x12\x1e\n" +
+	"\n" +
+	"customerId\x18\t \x01(\tR\n" +
+	"customerId\"\x95\x01\n" +
 	"\rdeleteRequest\x12\x1c\n" +
 	"\taccountId\x18\x01 \x01(\x03R\taccountId\x12$\n" +
 	"\raccountNumber\x18\x02 \x01(\x03R\raccountNumber\x12 \n" +
-	"\vaccountType\x18\x03 \x01(\tR\vaccountType\"\xa0\x02\n" +
+	"\vaccountType\x18\x03 \x01(\tR\vaccountType\x12\x1e\n" +
+	"\n" +
+	"customerId\x18\t \x01(\tR\n" +
+	"customerId\"\xc0\x02\n" +
 	"\x0edeleteResponse\x12\x1c\n" +
 	"\taccountId\x18\x01 \x01(\x03R\taccountId\x12$\n" +
 	"\raccountNumber\x18\x02 \x01(\x03R\raccountNumber\x12 \n" +
@@ -835,7 +914,10 @@ const file_api_helloworld_v1_account_proto_rawDesc = "" +
 	"\x06status\x18\x05 \x01(\tR\x06status\x12*\n" +
 	"\x10availableBalance\x18\x06 \x01(\tR\x10availableBalance\x12&\n" +
 	"\x0ependingBalance\x18\a \x01(\tR\x0ependingBalance\x12 \n" +
-	"\vcreditLimit\x18\b \x01(\tR\vcreditLimit\"\x9d\x02\n" +
+	"\vcreditLimit\x18\b \x01(\tR\vcreditLimit\x12\x1e\n" +
+	"\n" +
+	"customerId\x18\t \x01(\tR\n" +
+	"customerId\"\xbd\x02\n" +
 	"\vfindRequest\x12\x1c\n" +
 	"\taccountId\x18\x01 \x01(\x03R\taccountId\x12$\n" +
 	"\raccountNumber\x18\x02 \x01(\x03R\raccountNumber\x12 \n" +
@@ -844,7 +926,10 @@ const file_api_helloworld_v1_account_proto_rawDesc = "" +
 	"\x06status\x18\x05 \x01(\tR\x06status\x12*\n" +
 	"\x10availableBalance\x18\x06 \x01(\tR\x10availableBalance\x12&\n" +
 	"\x0ependingBalance\x18\a \x01(\tR\x0ependingBalance\x12 \n" +
-	"\vcreditLimit\x18\b \x01(\tR\vcreditLimit\"\x9e\x02\n" +
+	"\vcreditLimit\x18\b \x01(\tR\vcreditLimit\x12\x1e\n" +
+	"\n" +
+	"customerId\x18\t \x01(\tR\n" +
+	"customerId\"\xbe\x02\n" +
 	"\ffindResponse\x12\x1c\n" +
 	"\taccountId\x18\x01 \x01(\x03R\taccountId\x12$\n" +
 	"\raccountNumber\x18\x02 \x01(\x03R\raccountNumber\x12 \n" +
@@ -853,13 +938,16 @@ const file_api_helloworld_v1_account_proto_rawDesc = "" +
 	"\x06status\x18\x05 \x01(\tR\x06status\x12*\n" +
 	"\x10availableBalance\x18\x06 \x01(\tR\x10availableBalance\x12&\n" +
 	"\x0ependingBalance\x18\a \x01(\tR\x0ependingBalance\x12 \n" +
-	"\vcreditLimit\x18\b \x01(\tR\vcreditLimit2\xae\x03\n" +
+	"\vcreditLimit\x18\b \x01(\tR\vcreditLimit\x12\x1e\n" +
+	"\n" +
+	"customerId\x18\t \x01(\tR\n" +
+	"customerId2\xaa\x03\n" +
 	"\aAccount\x12b\n" +
 	"\rCreateAccount\x12\x1c.helloworld.v1.createRequest\x1a\x1d.helloworld.v1.createResponse\"\x14\x82\xd3\xe4\x93\x02\x0e:\x01*\"\tv1/create\x12b\n" +
 	"\rUpdateAccount\x12\x1c.helloworld.v1.updateRequest\x1a\x1d.helloworld.v1.updateResponse\"\x14\x82\xd3\xe4\x93\x02\x0e:\x01*\x1a\tv1/update\x12r\n" +
-	"\rDeleteAccount\x12\x1c.helloworld.v1.deleteRequest\x1a\x1d.helloworld.v1.deleteResponse\"$\x82\xd3\xe4\x93\x02\x1e:\x01**\x19v1/delete/{accountNumber}\x12g\n" +
-	"\vFindAccount\x12\x1a.helloworld.v1.findRequest\x1a\x1b.helloworld.v1.findResponse\"\x1f\x82\xd3\xe4\x93\x02\x19\x12\x17v1/find/{accountNumber}BY\n" +
-	"\x1cdev.kratos.api.helloworld.v1B\x11HelloworldProtoV1P\x01Z$account-service/api/helloworld/v1;v1b\x06proto3"
+	"\rDeleteAccount\x12\x1c.helloworld.v1.deleteRequest\x1a\x1d.helloworld.v1.deleteResponse\"$\x82\xd3\xe4\x93\x02\x1e:\x01**\x19v1/delete/{accountNumber}\x12c\n" +
+	"\vFindAccount\x12\x1a.helloworld.v1.findRequest\x1a\x1b.helloworld.v1.findResponse\"\x1b\x82\xd3\xe4\x93\x02\x15\x12\x13v1/find/{accountId}Bg\n" +
+	"\x1cdev.kratos.api.helloworld.v1B\x11HelloworldProtoV1P\x01Z2account-service/api/helloworld/v1/account.proto;v1b\x06proto3"
 
 var (
 	file_api_helloworld_v1_account_proto_rawDescOnce sync.Once

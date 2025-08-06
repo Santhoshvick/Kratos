@@ -2,9 +2,10 @@ syntax = "proto3";
 
 package helloworld.v1;
 
+
 import "google/api/annotations.proto";
 
-option go_package = "account-service/api/helloworld/v1;v1";
+option go_package = "account-service/api/helloworld/v1/account.proto;v1";
 option java_multiple_files = true;
 option java_package = "dev.kratos.api.helloworld.v1";
 option java_outer_classname = "HelloworldProtoV1";
@@ -33,13 +34,14 @@ service Account {
 
   rpc FindAccount (findRequest) returns (findResponse){
     option (google.api.http)={
-      get:"v1/find/{accountNumber}"
+      get:"v1/find/{accountId}"
     };
   };
  
 }
 
 message createRequest{
+  
   int64 accountId=1;
   int64 accountNumber=2;
   string accountType=3;
@@ -48,6 +50,7 @@ message createRequest{
   string availableBalance=6;
   string pendingBalance=7;
   string creditLimit=8;
+  string customerId=9;
 }
 message createResponse{
   int64 accountId=1;
@@ -58,6 +61,7 @@ message createResponse{
   string availableBalance=6;
   string pendingBalance=7;
   string creditLimit=8;
+  string customerId=9;
 }
 
 message updateRequest{
@@ -69,6 +73,7 @@ message updateRequest{
   string availableBalance=6;
   string pendingBalance=7;
   string creditLimit=8;
+  string customerId=9;
 }
 
 message updateResponse{
@@ -80,12 +85,14 @@ message updateResponse{
   string availableBalance=6;
   string pendingBalance=7;
   string creditLimit=8;
+  string customerId=9;
 }
 
 message deleteRequest{
   int64 accountId=1;
   int64 accountNumber=2;
   string accountType=3;
+  string customerId=9;
 }
 message deleteResponse{
   int64 accountId=1;
@@ -96,6 +103,7 @@ message deleteResponse{
   string availableBalance=6;
   string pendingBalance=7;
   string creditLimit=8;
+  string customerId=9;
 }
 
 message findRequest{
@@ -107,6 +115,7 @@ message findRequest{
   string availableBalance=6;
   string pendingBalance=7;
   string creditLimit=8;
+  string customerId=9;
 }
 
 message findResponse{
@@ -118,5 +127,5 @@ message findResponse{
   string availableBalance=6;
   string pendingBalance=7;
   string creditLimit=8;
-  
+  string customerId=9;
 }

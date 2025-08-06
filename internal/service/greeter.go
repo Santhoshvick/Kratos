@@ -3,8 +3,11 @@ package service
 import (
 	"context"
 
+
 	pb "account-service/api/helloworld/v1"
 	"account-service/internal/biz"
+
+
 )
 
 // GreeterService is a greeter service.
@@ -22,6 +25,7 @@ func NewAccountService(uc *biz.AccountUsecase) *AccountService {
 func (s *AccountService) CreateAccount(ctx context.Context,req *pb.CreateRequest) (*pb.CreateResponse,error){
 	g,err:=s.uc.CreateAccount(ctx,&biz.Account{
 		AccountId:req.AccountId,
+		CustomerId:req.CustomerId,
 		AccountNumber:req.AccountNumber,
 		AccountType:req.AccountType,
 		Currency:req.Currency,
@@ -36,6 +40,7 @@ func (s *AccountService) CreateAccount(ctx context.Context,req *pb.CreateRequest
 
 	return &pb.CreateResponse{
 		AccountId: g.AccountId,
+		CustomerId:g.CustomerId,
 		AccountNumber: g.AccountNumber,
 		AccountType:g.AccountType,
 		Currency:g.Currency,
@@ -66,6 +71,7 @@ func (s *AccountService) UpdateAccount(ctx context.Context,req *pb.UpdateRequest
 
 	return &pb.UpdateResponse{
 		AccountId: g.AccountId,
+		CustomerId:g.CustomerId,
 		AccountNumber: g.AccountNumber,
 		AccountType:g.AccountType,
 		Currency:g.Currency,
@@ -85,6 +91,7 @@ func (s *AccountService) DeleteAccount(ctx context.Context,req *pb.DeleteRequest
 
 	return &pb.DeleteResponse{
 		AccountId: g.AccountId,
+		CustomerId:g.CustomerId,
 		AccountNumber: g.AccountNumber,
 		AccountType:g.AccountType,
 		Currency:g.Currency,
@@ -104,6 +111,7 @@ func (s *AccountService) FindAccount(ctx context.Context,req *pb.FindRequest) (*
 
 	return &pb.FindResponse{
 		AccountId: g.AccountId,
+		CustomerId:g.CustomerId,
 		AccountNumber: g.AccountNumber,
 		AccountType:g.AccountType,
 		Currency:g.Currency,

@@ -60,18 +60,18 @@ paths:
                         application/json:
                             schema:
                                 $ref: '#/components/schemas/Status'
-    v1/find/{accountNumber}:
+    v1/find/{accountId}:
         get:
             tags:
                 - Account
             operationId: Account_FindAccount
             parameters:
-                - name: accountNumber
+                - name: accountId
                   in: path
                   required: true
                   schema:
                     type: string
-                - name: accountId
+                - name: accountNumber
                   in: query
                   schema:
                     type: string
@@ -96,6 +96,10 @@ paths:
                   schema:
                     type: string
                 - name: creditLimit
+                  in: query
+                  schema:
+                    type: string
+                - name: customerId
                   in: query
                   schema:
                     type: string
@@ -157,6 +161,8 @@ components:
                     type: string
                 creditLimit:
                     type: string
+                customerId:
+                    type: string
         CreateResponse:
             type: object
             properties:
@@ -176,6 +182,8 @@ components:
                     type: string
                 creditLimit:
                     type: string
+                customerId:
+                    type: string
         DeleteRequest:
             type: object
             properties:
@@ -184,6 +192,8 @@ components:
                 accountNumber:
                     type: string
                 accountType:
+                    type: string
+                customerId:
                     type: string
         DeleteResponse:
             type: object
@@ -204,6 +214,8 @@ components:
                     type: string
                 creditLimit:
                     type: string
+                customerId:
+                    type: string
         FindResponse:
             type: object
             properties:
@@ -222,6 +234,8 @@ components:
                 pendingBalance:
                     type: string
                 creditLimit:
+                    type: string
+                customerId:
                     type: string
         GoogleProtobufAny:
             type: object
@@ -266,6 +280,8 @@ components:
                     type: string
                 creditLimit:
                     type: string
+                customerId:
+                    type: string
         UpdateResponse:
             type: object
             properties:
@@ -284,6 +300,8 @@ components:
                 pendingBalance:
                     type: string
                 creditLimit:
+                    type: string
+                customerId:
                     type: string
 tags:
     - name: Account
