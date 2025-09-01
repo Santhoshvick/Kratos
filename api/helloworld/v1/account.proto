@@ -13,31 +13,54 @@ option java_outer_classname = "HelloworldProtoV1";
 service Account {
   rpc CreateAccount (createRequest) returns (createResponse){
     option (google.api.http) ={
-      post:"v1/create",
+      post:"v1/account/create",
       body:"*"
     };
   };
 
   rpc UpdateAccount (updateRequest) returns (updateResponse){
     option (google.api.http) ={
-      put:"v1/update"
+      put:"v1/account/update"
       body: "*"
     };
   };
 
   rpc DeleteAccount (deleteRequest) returns (deleteResponse){
     option (google.api.http)={
-      delete:"v1/delete/{accountNumber}",
+      delete:"v1/account/delete",
       body:"*"
     };
   };
 
   rpc FindAccount (findRequest) returns (findResponse){
     option (google.api.http)={
-      get:"v1/find/{accountId}"
+      get:"v1/account/find/{accountId}"
     };
   };
- 
+
+  rpc FindAccountNumber (findRequest) returns (findResponse){
+    option (google.api.http)={
+      get:"v1/accountnumber/find/{accountNumber}"
+    };
+  };
+
+  rpc FindByCustomerId(findRequest1) returns (findResponse2){
+     option (google.api.http)={
+      get:"v1/customerId/find/{customerId}"
+    };
+  };
+}
+
+message Account1 {
+  int64 accountId = 1;
+  int64 accountNumber = 2;
+  string accountType = 3;
+  string currency = 4;
+  string status = 5;
+  string availableBalance = 6;
+  string pendingBalance = 7;
+  string creditLimit = 8;
+  string customerId = 9;
 }
 
 message createRequest{
@@ -62,6 +85,7 @@ message createResponse{
   string pendingBalance=7;
   string creditLimit=8;
   string customerId=9;
+  string Message=10;
 }
 
 message updateRequest{
@@ -86,6 +110,7 @@ message updateResponse{
   string pendingBalance=7;
   string creditLimit=8;
   string customerId=9;
+  string Message=10;
 }
 
 message deleteRequest{
@@ -95,15 +120,8 @@ message deleteRequest{
   string customerId=9;
 }
 message deleteResponse{
-  int64 accountId=1;
-  int64 accountNumber=2;
-  string accountType=3;
-  string currency=4;
-  string status=5;
-  string availableBalance=6;
-  string pendingBalance=7;
-  string creditLimit=8;
-  string customerId=9;
+ 
+  string Message=1;
 }
 
 message findRequest{
@@ -128,4 +146,42 @@ message findResponse{
   string pendingBalance=7;
   string creditLimit=8;
   string customerId=9;
+  string Message=10;
+}
+
+
+message findRequest1{
+  string customerId=9;
+}
+message findResponse2{
+  int64 accountId=1;
+  int64 accountNumber=2;
+  string accountType=3;
+  string currency=4;
+  string status=5;
+  string availableBalance=6;
+  string pendingBalance=7;
+  string creditLimit=8;
+  string customerId=9;
+  string Message=10;
+}
+
+
+message findResponse1{
+  int64 accountId=1;
+  int64 accountNumber=2;
+  string accountType=3;
+  string currency=4;
+  string status=5;
+  string availableBalance=6;
+  string pendingBalance=7;
+  string creditLimit=8;
+  string customerId=9;
+  string Message=11;
+  repeated Account1 account=10;
+}
+
+
+message resp{
+  string message=1;
 }

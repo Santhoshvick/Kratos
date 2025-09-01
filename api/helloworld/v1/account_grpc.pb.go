@@ -19,10 +19,12 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Account_CreateAccount_FullMethodName = "/helloworld.v1.Account/CreateAccount"
-	Account_UpdateAccount_FullMethodName = "/helloworld.v1.Account/UpdateAccount"
-	Account_DeleteAccount_FullMethodName = "/helloworld.v1.Account/DeleteAccount"
-	Account_FindAccount_FullMethodName   = "/helloworld.v1.Account/FindAccount"
+	Account_CreateAccount_FullMethodName     = "/helloworld.v1.Account/CreateAccount"
+	Account_UpdateAccount_FullMethodName     = "/helloworld.v1.Account/UpdateAccount"
+	Account_DeleteAccount_FullMethodName     = "/helloworld.v1.Account/DeleteAccount"
+	Account_FindAccount_FullMethodName       = "/helloworld.v1.Account/FindAccount"
+	Account_FindAccountNumber_FullMethodName = "/helloworld.v1.Account/FindAccountNumber"
+	Account_FindByCustomerId_FullMethodName  = "/helloworld.v1.Account/FindByCustomerId"
 )
 
 // AccountClient is the client API for Account service.
@@ -33,6 +35,8 @@ type AccountClient interface {
 	UpdateAccount(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error)
 	DeleteAccount(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error)
 	FindAccount(ctx context.Context, in *FindRequest, opts ...grpc.CallOption) (*FindResponse, error)
+	FindAccountNumber(ctx context.Context, in *FindRequest, opts ...grpc.CallOption) (*FindResponse, error)
+	FindByCustomerId(ctx context.Context, in *FindRequest1, opts ...grpc.CallOption) (*FindResponse2, error)
 }
 
 type accountClient struct {
@@ -83,6 +87,26 @@ func (c *accountClient) FindAccount(ctx context.Context, in *FindRequest, opts .
 	return out, nil
 }
 
+func (c *accountClient) FindAccountNumber(ctx context.Context, in *FindRequest, opts ...grpc.CallOption) (*FindResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(FindResponse)
+	err := c.cc.Invoke(ctx, Account_FindAccountNumber_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *accountClient) FindByCustomerId(ctx context.Context, in *FindRequest1, opts ...grpc.CallOption) (*FindResponse2, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(FindResponse2)
+	err := c.cc.Invoke(ctx, Account_FindByCustomerId_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AccountServer is the server API for Account service.
 // All implementations must embed UnimplementedAccountServer
 // for forward compatibility.
@@ -91,6 +115,8 @@ type AccountServer interface {
 	UpdateAccount(context.Context, *UpdateRequest) (*UpdateResponse, error)
 	DeleteAccount(context.Context, *DeleteRequest) (*DeleteResponse, error)
 	FindAccount(context.Context, *FindRequest) (*FindResponse, error)
+	FindAccountNumber(context.Context, *FindRequest) (*FindResponse, error)
+	FindByCustomerId(context.Context, *FindRequest1) (*FindResponse2, error)
 	mustEmbedUnimplementedAccountServer()
 }
 
@@ -112,6 +138,12 @@ func (UnimplementedAccountServer) DeleteAccount(context.Context, *DeleteRequest)
 }
 func (UnimplementedAccountServer) FindAccount(context.Context, *FindRequest) (*FindResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindAccount not implemented")
+}
+func (UnimplementedAccountServer) FindAccountNumber(context.Context, *FindRequest) (*FindResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindAccountNumber not implemented")
+}
+func (UnimplementedAccountServer) FindByCustomerId(context.Context, *FindRequest1) (*FindResponse2, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindByCustomerId not implemented")
 }
 func (UnimplementedAccountServer) mustEmbedUnimplementedAccountServer() {}
 func (UnimplementedAccountServer) testEmbeddedByValue()                 {}
@@ -206,6 +238,42 @@ func _Account_FindAccount_Handler(srv interface{}, ctx context.Context, dec func
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Account_FindAccountNumber_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AccountServer).FindAccountNumber(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Account_FindAccountNumber_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AccountServer).FindAccountNumber(ctx, req.(*FindRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Account_FindByCustomerId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindRequest1)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AccountServer).FindByCustomerId(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Account_FindByCustomerId_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AccountServer).FindByCustomerId(ctx, req.(*FindRequest1))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Account_ServiceDesc is the grpc.ServiceDesc for Account service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -228,6 +296,14 @@ var Account_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "FindAccount",
 			Handler:    _Account_FindAccount_Handler,
+		},
+		{
+			MethodName: "FindAccountNumber",
+			Handler:    _Account_FindAccountNumber_Handler,
+		},
+		{
+			MethodName: "FindByCustomerId",
+			Handler:    _Account_FindByCustomerId_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

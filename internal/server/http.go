@@ -23,7 +23,7 @@ func NewHTTPServer(c *conf.Server, greeter *service.AccountService, logger log.L
 	}
 	cors := http.Filter(h.CORS(
         h.AllowedOrigins([]string{"*"}),
-        h.AllowedMethods([]string{"GET", "POST", "PATCH", "DELETE"}),
+        h.AllowedMethods([]string{"GET", "POST", "PATCH", "DELETE","PUT"}),
         h.AllowedHeaders([]string{"Content-Type", "Content-Disposition"}),
         h.ExposedHeaders([]string{"Content-Disposition", "Content-Type"}),
     ))

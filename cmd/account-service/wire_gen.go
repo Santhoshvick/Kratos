@@ -14,6 +14,8 @@ import (
 	"account-service/internal/service"
 	"github.com/go-kratos/kratos/v2"
 	"github.com/go-kratos/kratos/v2/log"
+	client "account-service/internal/client"
+	"fmt"
 )
 
 import (
@@ -22,15 +24,24 @@ import (
 
 // Injectors from wire.go:
 
-// wireApp init kratos application.
 func wireApp(confServer *conf.Server, confData *conf.Data, logger log.Logger) (*kratos.App, func(), error) {
 	dataData, cleanup, err := data.NewData(confData, logger)
 	if err != nil {
 		return nil, nil, err
 	}
+
+	customerClient, err := client.NewCustomerClient("localhost:9000") // or use confData
+	if err != nil {
+		return nil, nil, fmt.Errorf("failed to create account client: %w", err)
+	}
+	accountcustomerClient, err := client.NewAccountCustomerClient("localhost:9030") // or use confData
+	if err != nil {
+		return nil, nil, fmt.Errorf("failed to create account client: %w", err)
+	}
+
 	greeterRepo := data.NewAccountRepo(dataData, logger)
 	greeterUsecase := biz.NewAccountUsecase(greeterRepo, logger)
-	greeterService := service.NewAccountService(greeterUsecase)
+	greeterService := service.NewAccountService(greeterUsecase,customerClient,accountcustomerClient)
 	grpcServer := server.NewGRPCServer(confServer, greeterService, logger)
 	httpServer := server.NewHTTPServer(confServer, greeterService, logger)
 	app := newApp(logger, grpcServer, httpServer)

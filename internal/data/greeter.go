@@ -57,3 +57,46 @@ func (r *AccountRepo) FindAccount(ctx context.Context, accountId int64) (*biz.Ac
 
 	return &acc, nil
 }
+
+
+func (r *AccountRepo) FindAccountNumber(ctx context.Context, accountNumber int64) (*biz.Account, error) {
+	var acc biz.Account
+	result := r.table.WithContext(ctx).Where("account_number = ?", accountNumber).First(&acc)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+
+	return &acc, nil
+}
+func (r *AccountRepo) GetBalance(ctx context.Context, accountId int64) (*biz.Account, error) {
+	var acc biz.Account
+	result := r.table.WithContext(ctx).Where("account_id = ?", accountId).First(&acc)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+
+	return &acc, nil
+}
+
+
+func (r *AccountRepo) FindByCustomer(ctx context.Context, customerId string) ([]*biz.Account, error) {
+	var acc []*biz.Account
+	result := r.table.WithContext(ctx).Where("customer_id = ?",customerId).Find(&acc)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+
+	return acc, nil
+}
+
+func (r *AccountRepo) FindByCustomerId(ctx context.Context, customerId string) (*biz.Account, error) {
+	var acc *biz.Account
+	result := r.table.WithContext(ctx).Where("customer_id = ?",customerId).First(&acc)
+	if result.Error != nil {
+		return nil, result.Error
+	}
+
+	return acc, nil
+}
+
+

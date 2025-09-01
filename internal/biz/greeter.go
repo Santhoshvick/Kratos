@@ -17,7 +17,7 @@ var (
 
 // Greeter is a Greeter model.
 type Account struct {
-	AccountId         int64
+	AccountId         int64 `gorm:"column:account_id;type:bigint;primaryKey"`
 	CustomerId        string
 	AccountNumber     int64    `gorm:"unique"`
 	AccountType      string
@@ -33,10 +33,13 @@ type Account struct {
 
 // GreeterRepo is a Greater repo.
 type AccountRepo interface {
-	CreateAccount(context.Context, *Account) (*Account, error)
+	CreateAccount(context.Context, *Account) (*Account,error)
 	UpdateAccount(context.Context, *Account) (*Account, error)
 	DeleteAccount(context.Context, int64) (*Account, error)
 	FindAccount(context.Context, int64) (*Account, error)
+	FindAccountNumber(context.Context, int64) (*Account, error)
+	FindByCustomer(context.Context, string) ([]*Account, error)
+	FindByCustomerId(context.Context,string)(*Account,error)
 }
 
 // GreeterUsecase is a Greeter usecase.
@@ -46,12 +49,12 @@ type AccountUsecase struct {
 }
 
 
-func NewAccountUsecase(repo AccountRepo, logger log.Logger) *AccountUsecase {
+func NewAccountUsecase(repo AccountRepo, logger log.Logger,) *AccountUsecase {
 	return &AccountUsecase{repo: repo, log: log.NewHelper(logger)}
 }
 
 
-func (uc *AccountUsecase) CreateAccount(ctx context.Context, g *Account) (*Account, error) {
+func (uc *AccountUsecase) CreateAccount(ctx context.Context, g *Account) (*Account,error) {
 	return uc.repo.CreateAccount(ctx, g)
 }
 
@@ -66,6 +69,22 @@ func (uc *AccountUsecase) DeleteAccount(ctx context.Context, accountId int64) (*
 func (uc *AccountUsecase) FindAccount(ctx context.Context,accountId int64) (*Account, error) {
 	return uc.repo.FindAccount(ctx,accountId)
 }
+
+
+func (uc *AccountUsecase) FindAccountNumber(ctx context.Context,accountNumber int64) (*Account, error) {
+	return uc.repo.FindAccountNumber(ctx,accountNumber)
+}
+
+func (uc *AccountUsecase) FindByCustomer(ctx context.Context,customerId string) ([]*Account, error) {
+	return uc.repo.FindByCustomer(ctx,customerId)
+}
+
+
+func (uc *AccountUsecase) FindByCustomerId(ctx context.Context,customerId string) (*Account, error) {
+	return uc.repo.FindByCustomerId(ctx,customerId)
+}
+
+
 
 
 
